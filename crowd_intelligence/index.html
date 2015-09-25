@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crowd Intelligence</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Crowd Intelligence">
+  <meta name="author" content="Christoph Fabianek, September 2015">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Crowd Intelligence</h1>
+    <h2>Utilizing the wisdom of the crowd</h2>
+    <p>Christoph Fabianek, September 2015<br/>a Developing Data Products class project, for the Coursera Data Science Specialization</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style>
+em {
+  font-style: italic
+}
+strong {
+  font-weight: bold;
+}
+</style>
+
+<h2>The Problem</h2>
+
+<ol>
+<li>People (even experts) are really bad in predicting the future.</li>
+<li>Nonetheless, we are relying on this skill quite often when
+
+<ul>
+<li>changing our job,</li>
+<li>getting married, or</li>
+<li>making an investment.</li>
+</ul></li>
+<li>We decide based on how we expect the future will unfold.<br>
+These expectations are forecasts - and often wrong!</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>The Solution</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Ask your friends / team / clients! Because a group is smarter than its experts.<br>
+Those predictions will provide sensible results if the following 4 requirements hold:  </p>
+
+<ul>
+<li>Diversity of Opinion: each person should have some private information, even if it‘s just an eccentric interpretation of the known facts<br></li>
+<li>Independence: people’s opinions are not determined by the opinions of those around them<br></li>
+<li>Decentralization: people are able to specialize and draw on local knowledge<br></li>
+<li>Aggregation: some mechanism exists for turning private judgments into a collective decision<br></li>
+</ul>
+
+<p><strong>This class project will demo the aggregation mechanism.</strong></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>How does it work?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Open <a href="https://crowdstatus.shinyapps.io/project/">https://crowdstatus.shinyapps.io/project/</a><br>
+1) Forecasts are collected through a simple survey<br>
+2) Actual results are entered in the Admin Area to get a full analysis  </p>
+
+<p>Bonus: Evaluate forecasts with the Diversity Prediction Theorem (by <a href="https://www.youtube.com/watch?v=KtaaCAJjGr4">Scott E. Page</a> )
+   \[(c-\theta)^2 = \frac{1}{n}\sum_{i=1}^n (s_i - \theta)^2 - \frac{1}{n} \sum_{i=1}^n (s_i - c)^2\]</p>
+
+<pre><code class="r">s &lt;- rnorm(10) # n=10 individual predictions
+t &lt;- 0.3       # theta is the actual result (could be anything!)
+c &lt;- mean(s)   # c is the crowd prediciton
+crowd_error &lt;- (c-t)^2; average_error &lt;- sum((s-t)^2)/10; diversity &lt;- sum((s-c)^2)/10
+print(c(crowd_error, average_error - diversity))
+</code></pre>
+
+<pre><code>## [1] 0.1150276 0.1150276
+</code></pre>
+
+<p>Message: make sure you have a large diversity (term does not include \(\theta\)) to avoid bias</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Further Information</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Project inspired by <a href="https://www.crowdstatus.net">Crowd Status</a></li>
+<li><p>Literatur</p>
+
+<ul>
+<li>The Wisdom of Crowds, 2004, by James Surowiecki</li>
+<li>Superforecasting: The Art and Science of Prediction, 2015,<br>
+by Philip Tetlock and Dan Gardner</li>
+<li>Thinking, Fast and Slow, 2011, by Daniel Kahnemann</li>
+</ul></li>
+<li><p>Software</p>
+
+<ul>
+<li><a href="http://shiny.rstudio.com/">Shiny</a>, including <a href="https://github.com/daattali/shiny-server/tree/master/persistent-data-storage">Persisting Data</a>  example</li>
+<li><a href="http://yihui.name/knitr/">Knitr</a> to create Analysis Report using an Rmd Template</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='NA'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The Solution'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How does it work?'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Further Information'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
