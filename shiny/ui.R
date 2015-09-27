@@ -60,7 +60,7 @@ shinyUI(fluidPage(
                         br(),br(),
                         div(id = "form",
                             numericInput('scope', 'Scope', 0, min = 0, max = 90, step = 1),
-                            div(id='scopeEstimateText', "Estimate the number of new features completed until the next milstone."),
+                            div(id='scopeEstimateText', "Estimate the number of new features completed until the next milestone."),
                             shinyjs::hidden(
                                 span(id = "resultScopeMsg", 
                                      strong("Average estimation of new features:"),
