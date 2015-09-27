@@ -1,0 +1,75 @@
+# Survey Analysis
+
+### Scope  
+`r length(all_data$scope)` participants estimated the number of new features completed until the next milstone. The following [boxplot](https://en.wikipedia.org/wiki/Box_plot) summarizes the results:  
+
+```{r, fig.align='center', fig.height=2, fig.width=6, echo=FALSE, message=FALSE, warning=FALSE}
+bwplot(all_data$scope, xlab='Scope (Number of Features)', 
+       key=list(space="top", columns=3,
+                text=list(lab=c("Median:","Average:", "Outcome:")),
+                lines=list(
+                        pch = c(16,4,NA),
+                        col = c("black", "blue", "green"),
+                        type = c("p", "p", "l"),
+                        lwd = c(NA, NA, 3))),
+       panel = function(x,y,...) {
+        panel.bwplot(x,y,...)
+        panel.points(x=mean(all_data$scope),y, pch=4, col="blue")
+        panel.abline(v=actualScope, col="green", lwd=3)
+})
+```
+
+**Properties for the [Diversity Prediction Theorem](https://www.youtube.com/watch?v=KtaaCAJjGr4):**  
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+n <- length(all_data$scope)
+c <- mean(all_data$scope)  # crowd_prediciton
+crowd_error <- (c - actualScope)^2
+average_error <- 1/n * sum((all_data$scope - actualScope)^2)
+diversity <- 1/n * sum((all_data$scope - c)^2)
+Overall <- c(actualScope, 
+             c,
+             crowd_error,
+             average_error,
+             diversity)
+dpt <- data.frame(Overall)
+row.names(dpt) <- c('result', 'crowd prediction', 'crowd error', 'average error', 'diversity')
+kable(dpt, digits = 2)
+```
+
+### Quality  
+`r length(all_data$quality)` participants estimated the number of reported critical bugs in the first month. The following [boxplot](https://en.wikipedia.org/wiki/Box_plot) summarizes the results:  
+
+```{r, fig.align='center', fig.height=2, fig.width=6, echo=FALSE, message=FALSE, warning=FALSE}
+bwplot(all_data$quality, xlab='Quality (Number of reported critical bugs)', 
+       key=list(space="top", columns=3,
+                text=list(lab=c("Median:","Average:", "Outcome:")),
+                lines=list(
+                        pch = c(16,4,NA),
+                        col = c("black", "blue", "green"),
+                        type = c("p", "p", "l"),
+                        lwd = c(NA, NA, 3))),
+       panel = function(x,y,...) {
+        panel.bwplot(x,y,...)
+        panel.points(x=mean(all_data$quality),y, pch=4, col="blue")
+        panel.abline(v=actualQuality, col="green", lwd=3)
+})
+```
+
+**Properties for the [Diversity Prediction Theorem](https://www.youtube.com/watch?v=KtaaCAJjGr4):**  
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.align='center'}
+n <- length(all_data$quality)
+c <- mean(all_data$quality)  # crowd_prediciton
+crowd_error <- (c - actualQuality)^2
+average_error <- 1/n * sum((all_data$quality - actualQuality)^2)
+diversity <- 1/n * sum((all_data$quality - c)^2)
+Overall <- c(actualQuality, 
+             c,
+             crowd_error,
+             average_error,
+             diversity)
+dpt <- data.frame(Overall)
+row.names(dpt) <- c('result', 'crowd prediction', 'crowd error', 'average error', 'diversity')
+kable(dpt, digits = 2)
+```

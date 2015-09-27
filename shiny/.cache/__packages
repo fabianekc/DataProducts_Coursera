@@ -1,0 +1,13 @@
+base
+rsconnect
+knitr
+V8
+shiny
+magrittr
+lattice
+DT
+dplyr
+digest
+DBI
+RAmazonS3
+slidify

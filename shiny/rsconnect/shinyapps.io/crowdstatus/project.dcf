@@ -1,0 +1,8 @@
+name: project
+account: crowdstatus
+server: shinyapps.io
+appId: 60718
+bundleId: 272884
+url:
+   https://crowdstatus.shinyapps.io/project
+when: 1443103593.20149
