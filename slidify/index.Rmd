@@ -76,5 +76,5 @@ Message: make sure you have a large diversity (term does not include $\theta$) t
   
 * Software
   * [Shiny](http://shiny.rstudio.com/), including [Persisting Data](https://github.com/daattali/shiny-server/tree/master/persistent-data-storage)  example
-  * [Knitr](http://yihui.name/knitr/) to create Analysis Report using an Rmd Template
+  * [Knitr](http://yihui.name/knitr/) to create Survey Analysis using an Rmd Template
 

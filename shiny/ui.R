@@ -8,11 +8,11 @@ shinyUI(fluidPage(
         
         div(
                 id = "titlePanel",
-                "Crowd Integlligence"
+                "Crowd Intelligence"
         ),
         br(),
         p("This web app demonstrates the", strong("Wisdom of the Crowd"), "-",
-          a("click here for more information (slidify presentation).", href="https://fabianekc.github.io/DataProducts_Coursera/crowd_intelligence/index.html"),
+          a("click here for more information (slidify presentation).", href="https://fabianekc.github.io/DataProducts_Coursera/slidify/index.html"),
           br(),
           "It was developed for the",
           em("Developing Data Products"),
